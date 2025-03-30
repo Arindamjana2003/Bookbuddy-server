@@ -1,0 +1,109 @@
+### Project Android BCA (Sumana, Srilekha, Diya, Arindam)
+
+Name : Book buddy
+
+Features:
+   - Admin
+	-- User details
+	-- Add books
+	-- Add Question papers
+	-- Approved by admin when books are added by users * 
+	-- 
+   - User
+	-- Account create 
+	-- Add books
+	-- Read books
+	-- Add review of books
+	-- Liked books
+	-- Search books
+	-- Request for books
+	-- See question papers *
+	-- Add notes to the diary
+	-- Add Blogs (Any types)
+
+
+Technology use:
+  - React Native [Expo]  --------> App Framework
+  - Node with Express.JS --------> Backend and API creation
+  - MongoDB  --------------------> DB connection
+  - Bcrypt.JS -------------------> Password Hashing
+  - Socket.io -------------------> Realtime communication
+  - Cloudinary ------------------> Storage 
+  - Nodemailer ------------------> Mail service
+  - Zod -------------------------> Validation 
+  - Zustand  --------------------> State Management
+  - NativeWind ------------------> CSS library
+  - Expo Icons ------------------> Icon packs
+  - Lottie files ----------------> Animated files
+
+
+
+ ------------------------------- Database ---------------------
+
+ tables -->
+   
+   - Admins
+   - Users
+      - name 
+	  - email 
+	  - password 
+	  - profile-pic
+	  - role : "admin" , "user"
+	  
+
+   - categoris 
+     - name 
+	 - description
+	 - user
+
+   - Books(complete)
+      - name
+	  - Pdf
+	     -url
+		 -public-id
+	  - categoris
+	  - description 
+	  - autherName 
+	  - publiceDate 
+	  - rating  
+	  - likes : [ 
+		-userId
+	    ]
+	  - ratings :
+	    [
+		 - userId
+		]
+	  
+
+	- Reviews (Srilekha)
+	  -userId 
+	  -bookId 
+	  -blogId
+	  -reviewType : "book" , "blog"
+	  -message 
+
+	- Requests (Sumana) 
+	  - userId
+	  - bookName 
+	  - autherName
+	  - status : "panding" , "fullfil" , "reject"
+	
+	- Blogs (Arindam)
+	  - userId 
+	  - title 
+	  - description
+	  - image 
+	     - url
+		 - public-id
+	
+	- Notes (Diye)
+	   - userId 
+	   - title
+	   - message
+	   - date 
+	
+	  
+
+
+
+
