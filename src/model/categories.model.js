@@ -8,7 +8,7 @@ const categorySchema = new Schema({
         minLength : [ 3 , "name must be 3 latter or more"] ,
         required: [true, 'name is reqired!'],
         trim: true  
-    },
+    },       
     description: {
         type: String,
         trim: true,
