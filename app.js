@@ -3,6 +3,7 @@ import bodyParser from "body-parser"
 
 import corsConfig from "./src/config/cors.config.js"
 import { todoRouter } from "./src/routes/todo.routes.js"
+import { categoriRouter } from "./src/routes/categories.routes.js"
 
 
 
@@ -16,6 +17,7 @@ server.use(bodyParser.urlencoded( { limit : "50mb" , extended : true }) )
 // all routes 
 
 server.use('/api/v1/todo' , todoRouter)
+server.use('/api/v1/categories' , categoriRouter)
 
 server.get("/" , (req , res)=>{
      res.send("application is run ").json({

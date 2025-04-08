@@ -20,4 +20,4 @@ const categorySchema = new Schema({
         required: true
     }
 })
-export const Catagories = model("category",categorySchema)
+export const Categories = model("category",categorySchema)

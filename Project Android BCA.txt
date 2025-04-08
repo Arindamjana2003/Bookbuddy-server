@@ -51,10 +51,11 @@ Technology use:
 	  - role : "admin" , "user"
 	  
 
-   - categoris 
-     - name 
+   - categoris (Srilekha)
+     - name : unique        
 	 - description
-	 - user
+	 - user 
+
 
    - Books(complete)
       - name
@@ -76,9 +77,9 @@ Technology use:
 	  
 
 	- Reviews (Srilekha)
-	  -userId 
-	  -bookId 
-	  -blogId
+	  -user
+	  -book 
+	  -blog
 	  -reviewType : "book" , "blog"
 	  -message 
 
@@ -89,7 +90,7 @@ Technology use:
 	  - status : "panding" , "fullfil" , "reject"
 	
 	- Blogs (Arindam)
-	  - userId 
+	  - user
 	  - title 
 	  - description
 	  - image 
@@ -97,7 +98,7 @@ Technology use:
 		 - public-id
 	
 	- Notes (Diye)
-	   - userId 
+	   - user
 	   - title
 	   - message
 	   - date 
@@ -106,4 +107,84 @@ Technology use:
 
 
 
+-------------------------------- API creation -------------------------
 
+   1.----------------categoris---------------------- 
+      
+	  1.add categoris 
+	    - authenticate 
+		- payload : {
+			name : string , trim , required 
+			description : string , trim , required 
+		    user : userId , string , trim , required
+		}
+		- save on categoris table 
+	
+	  2. categoris edit option \
+	    - authenticate ,
+		- admin can edit 
+		- body :{
+            name : ,
+			description : ,
+		}
+		- params : categorisId
+
+	  3. categoris delete API 
+	    - authenticate
+		- admin can delete
+
+	  4. fetch All categoris
+
+
+	2.---------------------- Notes  ------------------------------ 
+	   1. create notes 
+	     - user authenticate 
+		 - body :{
+             title : string , trim , min(3) , max(100)
+			 message : string , trim , max(1500)
+
+		 }
+      
+	   2. delete notes 
+	     - authenticate
+		 - params : noteId
+
+        3. edit notes
+		  - authenticate
+		  - body :{
+             title : string , trim , min(3) , max(100)
+			 message : string , trim , max(1500)
+		  }
+		  - params : noteId
+
+		4. fetch all notes
+		  - authenticate 
+		  - params : userId
+		   await User.find({ user : userId })
+
+
+	3.---------------------- Blogs  ------------------------------ 
+	   1. create Blogs 
+	     - user authenticate 
+		 - body :{
+             title : string , trim , min(3) , max(100)
+			 message : string , trim , max(1500)
+             image : string , trim , optional 
+		 }
+      
+	   2. delete blogs 
+	     - authenticate
+		 - params : blogsId
+
+        3. edit blogs
+		  - authenticate
+		  - body :{
+             title : string , trim , min(3) , max(100)
+			 message : string , trim , max(1500)
+			  image : string , trim , optional 
+		  }
+		  - params : blogId
+
+		4. fetch all blogs
+	
+	4. --------------------- Requst Model -------------------------------

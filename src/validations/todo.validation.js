@@ -4,8 +4,8 @@ class TodoValidations {
 
     create = z.object({
         body: z.object({
-          title: z.string().min(3 , "Title is required"),
-          description: z.string().optional(),
+          title: z.string().trim().min(3 , "Title is required"),
+          description: z.string().trim().optional(),
         }).strict(),
       })
 
