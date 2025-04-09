@@ -8,7 +8,7 @@ import categoriesController from "../controller/categories.controller"
 const router = express.Router()
 
 router
-   .post("/" , validate(categoriesValidation.create) , isAuthenticate , categoriesController.createCatrgories  )
+   .post("/" , validate(categoriesValidation.create) , isAuthenticate , categoriesController.createCatrgories )
    
 
 

@@ -12,7 +12,7 @@ const userSchema = new Schema({
         trim: true   // "   som   "
     },
     email: {
-        type: String,
+        type: String, // "som@gmail.in"
         required: [true, 'email is reqired!'],
         unique: true,
         match: [
@@ -40,7 +40,7 @@ const userSchema = new Schema({
     ,
     role: {
         type: String,
-        enum: ['user' , 'admin', 'controller'],
+        enum: ['user' , 'admin', 'controller'], 
         default: 'user'
     },
     otp: {
@@ -49,11 +49,6 @@ const userSchema = new Schema({
     otpExpiary: {
         type: Date
     },
-    isProfileComplete : {
-        type:Boolean,
-        default:false
-    }
-
 }, { timestamps: true })
 
 
