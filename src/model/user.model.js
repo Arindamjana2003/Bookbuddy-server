@@ -47,8 +47,13 @@ const userSchema = new Schema({
         type: Number
     },
     otpExpiary: {
-        type: Date
+        type: Date ,
+        default : Date.now() + 5 * 60 * 1000 
     },
+    isVerify : {
+        type : Boolean ,
+        default : false
+    }
 }, { timestamps: true })
 
 
