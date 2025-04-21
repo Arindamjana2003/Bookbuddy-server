@@ -116,18 +116,29 @@ Technology use:
 
 -------------------------------- API creation -------------------------
 
+
+
+    steps for create API
+
+     step1 : - route create 
+	 step2 : - add validation 
+	 step3 : - create controller 
+	 step4 : - add service
+
+
+
    1.----------------categoris---------------------- 
       
 	  1.add categoris 
 	    - authenticate 
-		- payload : {
+		- body : {
 			name : string , trim , required 
 			description : string , trim , required 
 		    user : userId , string , trim , required
 		}
 		- save on categoris table 
 	
-	  2. categoris edit option \
+	  2. categoris edit option 
 	    - authenticate ,
 		- admin can edit 
 		- body :{
@@ -149,7 +160,6 @@ Technology use:
 		 - body :{
              title : string , trim , min(3) , max(100)
 			 message : string , trim , max(1500)
-
 		 }
       
 	   2. delete notes 
@@ -196,4 +206,37 @@ Technology use:
 	
 	4. --------------------- Requst Model -------------------------------
 
-	 
+	  1. create request 
+	   -Validation - {
+		 name : string , trim , required ,
+		 autherName : string , trim , optional ,
+		 category : string , trim , required
+	   }
+	   -authenticate
+	   -save on request model , (status: pending  , user : req.user._id , req.body )
+	    
+
+	2. get all request
+
+	-authenticate
+	
+
+	3. update request
+	 -authenticate
+	 -Validation - 
+	  body :{
+		 name : string , trim , required ,
+		 autherName : string , trim , optional ,
+		 category : string , trim , required
+	   }
+	   params : requestId
+    - update request if status is pending 
+
+    4. delete request 
+	 -authenticate
+	 -validation:
+	 params:{
+       requestId 
+	 }
+
+	5.

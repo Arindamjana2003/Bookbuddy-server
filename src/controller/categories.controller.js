@@ -8,7 +8,7 @@ class CategoriesController {
 
     async createCatrgories(req , res){
         try {
-            const data = await categoriesService.createCategories(req.body) 
+            const data = await categoriesService.createCategories(req.body , req.user ) 
             console.info("categories created")
             return sendResponse(res , { status:HTTP_STATUS.CREATED , message : RESPONSE_MESSAGES.CETAGORIES_CREATE_SUCCESS , success:true , data:data })
         } catch (error) {

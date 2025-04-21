@@ -6,6 +6,11 @@ const requestSchema = new Schema({
     ref:'user',
     required: true,
   },
+  category : {
+    type : Schema.Types.ObjectId ,
+    ref: "category" ,
+    required : true 
+  } ,
   bookName: {
     type: String,
     required: [true, 'Book Name must be required!'],

@@ -2,11 +2,12 @@ import { Categories } from "../model/categories.model.js";
 
 
 class CategoriesServices {
-    async createCategories(body) {
+    async createCategories(body , user ) {
+        const { id } = user 
         const data = await Categories.create({
             name : body.name , 
             description : body.description , 
-            user : body.user ,
+            user : id ,
         }) 
         return data ;
     } 
