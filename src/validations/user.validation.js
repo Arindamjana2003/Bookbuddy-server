@@ -12,7 +12,7 @@ class UserValidation  {
   login = z.object({
     body: z.object({
       email: z.string().trim().email("Invalid email format") ,
-      password: z.string().trim().min(8, "Password is required"),
+      password: z.string().trim().min(8 , "Password is required"),
     }),
   })
 
