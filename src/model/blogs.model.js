@@ -2,7 +2,7 @@ import { Schema, model } from "mongoose";
 
 const blogSchema = new Schema(
   {
-    userId: {
+    user: {
       type: Schema.Types.ObjectId,
       ref: 'user',
       required: true,
@@ -22,7 +22,8 @@ const blogSchema = new Schema(
     image: {
       url: {
         type: String,
-        default: 'https://res.cloudinary.com/dab0ekhmy/image/upload/v1728130610/thik-ai/gvjpvq3xljmnw2vwdkag.avif',
+        // default: 'https://res.cloudinary.com/dab0ekhmy/image/upload/v1728130610/thik-ai/gvjpvq3xljmnw2vwdkag.avif',
+        default : null
       },
       public_id: {
         type: String,
@@ -33,4 +34,4 @@ const blogSchema = new Schema(
   { timestamps: true } 
 );
 
-export const blogs = model("blog", blogSchema);
+export const Blogs = model("blog", blogSchema);
