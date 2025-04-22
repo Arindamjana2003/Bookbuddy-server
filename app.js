@@ -9,6 +9,7 @@ import { cloudinaryConfig } from "./src/config/cloudinary.config.js"
 
 import 'dotenv/config'
 import { dbConnection } from "./src/config/database.config.js"
+import { blogRouter } from "./src/routes/blogs.routes.js"
 
 
 const server = express()
@@ -23,6 +24,7 @@ server.use(bodyParser.urlencoded( { limit : "50mb" , extended : true }) )
 server.use('/api/v1/todo' , todoRouter)
 server.use('/api/v1/categories' , categoriRouter)
 server.use("/api/v1/user" , userRouter)
+server.use("/api/v1/blog" , blogRouter )
 
 server.get("/" , (req , res)=>{
      console.log("application running");
