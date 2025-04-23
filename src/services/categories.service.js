@@ -1,3 +1,4 @@
+import { string } from "zod";
 import { Categories } from "../model/categories.model.js";
 
 
@@ -11,6 +12,28 @@ class CategoriesServices {
         }) 
         return data ;
     } 
-}
+      
+    async updateCategories(body, params){
+        const { CategoriesId } = params
+        const data = await Categories.update({
+              name : body.name,
+              description : body.description,
+              params : CategoriesId,
 
+
+        })
+        return data;
+    }
+    async deleteCategories(params){
+        const { CategoriesId } = params
+        const data = await Categories.delete({
+            where : { id:CategoriesId}
+    });
+     return data; 
+    }
+    async fetchAllCategories(){
+        const data = await categoriesController.findAll();
+        return data;
+    }
+}
 export default new CategoriesServices();

@@ -9,6 +9,9 @@ const router = express.Router()
 
 router
    .post("/" , validate(categoriesValidation.create) , isAuthenticate , categoriesController.createCatrgories )
+   .patch("/:categoriesId",validate(categoriesValidation.update),isAuthenticate,categoriesController.updateCategories)
+   .delete("/:categoriesId",validate(categoriesValidation.delete),isAuthenticate,(categoriesValidation.delete),isAuthenticatecategoriesController.deleteCategories)
+   .get("/",validate(categoriesValidation.get),isAuthenticate,categoriesController.fetchAllCategoriesList)
    
 
 
