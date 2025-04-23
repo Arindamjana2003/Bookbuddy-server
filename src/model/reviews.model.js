@@ -4,7 +4,7 @@ const reviewSchema = new Schema({
   userId: {
     type: Schema.Types.ObjectId,
     ref: 'user',
-    required: true
+    required: true     
   },
   bookId: {
     type: Schema.Types.ObjectId,
