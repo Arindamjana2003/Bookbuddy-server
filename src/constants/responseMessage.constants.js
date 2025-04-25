@@ -17,10 +17,4 @@ export const RESPONSE_MESSAGES = {
     INTERNAL_ERROR: "Internal Error",
     
 
-    NOTE_CREATED: "note created successfully",
-    NOTE_UPDATED: "note update success",
-    NOTE_DELETED: "note delete success",
-    NOTE_NOT_FOUND: "note not exist",
-    FETCH_ALL_NOTES: "Fetch all note list",
-    NO_NOTES: "No notes are available!",
 }

@@ -10,7 +10,6 @@ import { cloudinaryConfig } from "./src/config/cloudinary.config.js"
 import 'dotenv/config'
 import { dbConnection } from "./src/config/database.config.js"
 import { blogRouter } from "./src/routes/blogs.routes.js"
-import { noteRouter } from "./src/routes/note.routes.js"
 
 
 const server = express()
@@ -26,7 +25,7 @@ server.use('/api/v1/todo' , todoRouter)
 server.use('/api/v1/categories' , categoriRouter)
 server.use("/api/v1/user" , userRouter)
 server.use("/api/v1/blog" , blogRouter )
-server.use("/api/v1/blog" , noteRouter )
+
 
 server.get("/" , (req , res)=>{
      console.log("application running");

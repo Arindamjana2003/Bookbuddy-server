@@ -32,10 +32,11 @@ class NoteServices {
             const note = await Notes.findById(noteId);
             if (!note) {
                 throw new Error("That is not a valid category")
+            }    
     
              await Notes.findByIdAndDelete(noteId)
              return note ;
-           }  
+             
         }  
           
     async fetch() {
