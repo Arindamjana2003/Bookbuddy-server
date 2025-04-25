@@ -7,16 +7,31 @@ import { sendResponse } from "../utils/response.handler.js";
 export const createUser = async (req, res) => {
   try {
     const user = await UserService.createUser(req.body);
+    return sendResponse(res, { status: HTTP_STATUS.OK, data:user ,  success: true, message: "Verification code sent to your email" });
   } catch (error) {
-    console.error(error);
+    console.error("--------------" ,error);
     sendResponse(res, { 
       status: HTTP_STATUS.INTERNAL_SERVER_ERROR, 
       success: false, 
-      message: RESPONSE_MESSAGES.INTERNAL_ERROR, 
-      error 
+      message: error.message  || RESPONSE_MESSAGES.INTERNAL_ERROR, 
+      error: error.message 
     });
   }
 };
+
+
+export const logInUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const result = await UserService.loginUser(email, password);
+    
+    return sendResponse(res, { status: HTTP_STATUS.OK, data:result , success: true, message: "User Logged in successfully." });
+    
+  } catch (error) {
+    sendResponse(res, { status: HTTP_STATUS.BAD_REQUEST, success: false, message: error.message });
+  }
+};
+
 
 export const sendOtpForVerifyAccount = async (req, res) => {
   try {
@@ -30,23 +45,12 @@ export const sendOtpForVerifyAccount = async (req, res) => {
 export const VerifyOtpWithExpiry = async (req, res) => {
   try {
     const user = await UserService.verifyOtp(req.body.otp);
+    sendResponse(res, { status: HTTP_STATUS.OK, success: true, message: "OTP verify successfully." });
   } catch (error) {
     sendResponse(res, { status: HTTP_STATUS.BAD_REQUEST, success: false, message: error.message });
   }
 };
 
-
-export const logInUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    const result = await UserService.loginUser(email, password);
-    if (result.requiresTwoStep) {
-      return sendResponse(res, { status: HTTP_STATUS.OK, success: true, message: "Verification code sent to your email" });
-    }
-  } catch (error) {
-    sendResponse(res, { status: HTTP_STATUS.BAD_REQUEST, success: false, message: error.message });
-  }
-};
 
 export const updateUserProfilePic = async (req, res) => {
   try {
