@@ -1,5 +1,5 @@
-import { Blogs } from "../model/blogs.model";
-import { fileDestroy, fileUploader } from "../utils/fileUpload";
+import { Blogs } from "../model/blogs.model.js";
+import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
 
 
 

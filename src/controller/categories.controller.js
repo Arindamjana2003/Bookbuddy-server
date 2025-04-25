@@ -19,7 +19,7 @@ class CategoriesController {
 
     async updateCategories(req,res){
         try{
-            const categoriesEsxit = await categoriesService.findByid(req.params.categoriesId);
+            const categoriesEsxit = await categoriesService.updateCategories(req.params.categoriesId);
             if(!categoriesEsxit){
             return sendResponse(res,{status:HTTP_STATUS.BAD_REQUEST,message:RESPONSE_MESSAGES.CETAGORIES_NOT_EXIST,success:false,})
             }
