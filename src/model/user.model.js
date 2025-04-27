@@ -30,7 +30,7 @@ const userSchema = new Schema({
     profile_pic: {
         url: {
             type: String,
-            default: 'https://res.cloudinary.com/dab0ekhmy/image/upload/v1728130610/thik-ai/gvjpvq3xljmnw2vwdkag.avif'
+            default: 'https://res.cloudinary.com/dycjlsiht/image/upload/v1745738641/images/kqpb6yndj7dv4g8xstdg.jpg'
         },
         public_id: {
             type: String,
