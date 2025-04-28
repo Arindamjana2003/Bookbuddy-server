@@ -98,7 +98,10 @@ class BlogServices {
     }
 
     async fetch() {
-        const data = await Blogs.find().populate("user", "name email image");
+        const data = await Blogs.find().populate(
+            "user",
+            "name email profile_pic"
+        );
         if (!data.length) {
             throw new Error("Blogs is Empty");
         }
