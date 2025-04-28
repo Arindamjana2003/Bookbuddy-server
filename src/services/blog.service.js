@@ -28,7 +28,7 @@ class BlogServices {
     }
 
     async update(body, params, user) {
-        const { id } = user;
+        const { _id } = user;
         const { blogId } = params;
         let imageData = {};
         let blog = await Blogs.findById(blogId);
@@ -105,6 +105,22 @@ class BlogServices {
         if (!data.length) {
             throw new Error("Blogs is Empty");
         }
+        return data;
+    }
+
+    async fetchDetails(params) {
+        console.log(params);
+
+        const data = await Blogs.findById(params).populate(
+            "user",
+            "name email profile_pic"
+        );
+        console.log(data);
+
+        if (!data) {
+            throw new Error("Blog not found");
+        }
+
         return data;
     }
 }

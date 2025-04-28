@@ -1,8 +1,8 @@
 export const RESPONSE_MESSAGES = {
-    TODO_CREATED: "Todo created successfully",
-    TODO_UPDATED: "Todo update success",
-    TODO_DELETED: "Todo delete success",
-    TODO_NOT_FOUND: "Todo not exist",
+    NOTE_CREATED: "Note created successfully",
+    NOTE_UPDATED: "Note update success",
+    NOTE_DELETED: "Note delete success",
+    NOTE_NOT_FOUND: "Note not exist",
     TITLE_REQUIRED: "Title is required",
     FETCH_ALL_TODOS: "Fetch all todo list",
     NO_TODOS: "No todos are available!",
@@ -15,6 +15,4 @@ export const RESPONSE_MESSAGES = {
     FETCH_ALL_CATEGORIES: "Fetch all Categories list",
     NO_CATEGORIES: "No Categories are available!",
     INTERNAL_ERROR: "Internal Error",
-    
-
-}
+};
