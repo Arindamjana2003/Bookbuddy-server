@@ -14,18 +14,18 @@ router
         noteController.createNote
     )
     .get("/", isAuthenticate, noteController.fetchNote)
-    .get("/:noteId", isAuthenticate, noteController.fetchNoteById);
-//  .patch(
-//      "/:noteId",
-//      validate(notesValidation.update),
-//      isAuthenticate,
-//      noteController.pa
-//  )
-//  .delete(
-//      "/:noteId",
-//      validate(notesValidation.delete),
-//      isAuthenticate,
-//      noteController.createNote
-//  );
+    .get("/:noteId", isAuthenticate, noteController.fetchNoteById)
+    //  .patch(
+    //      "/:noteId",
+    //      validate(notesValidation.update),
+    //      isAuthenticate,
+    //      noteController.pa
+    //  )
+    .delete(
+        "/:noteId",
+        validate(notesValidation.delete),
+        isAuthenticate,
+        noteController.deleteNote
+    );
 
 export const notesRouter = router;

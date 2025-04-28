@@ -51,8 +51,8 @@ class NoteController {
             const note = await notesService.editNote(req.body);
             console.info("note edited");
             return sendResponse(res, {
-                status: HTTP_STATUS.EDITED,
-                message: RESPONSE_MESSAGES.NOTE_EDITED,
+                status: HTTP_STATUS.OK,
+                message: "Note updated",
                 success: true,
                 data: note,
             });
@@ -72,7 +72,7 @@ class NoteController {
             console.info("note fetched");
             return sendResponse(res, {
                 status: HTTP_STATUS.OK,
-                message: RESPONSE_MESSAGES.NOTE_FETCHED,
+                message: "Note fetched",
                 success: true,
                 data: note,
             });
@@ -91,8 +91,8 @@ class NoteController {
             const note = await notesService.fetchById(req.params);
             console.info("note fetched by id");
             return sendResponse(res, {
-                status: HTTP_STATUS.FETCHED,
-                message: RESPONSE_MESSAGES.NOTE_FETCHED_BY_ID,
+                status: HTTP_STATUS.OK,
+                message: "Note fetched",
                 success: true,
                 data: note,
             });

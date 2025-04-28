@@ -15,6 +15,7 @@ router
         blogController.create
     )
     .get("/", isAuthenticate, blogController.fetch)
+    .get("/:blogId", isAuthenticate, blogController.fetchDetails)
     .patch(
         "/:blogId",
         validate(blogsValidation.update),

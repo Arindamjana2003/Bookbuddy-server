@@ -12,12 +12,14 @@ const noteSchema = new Schema(
             required: [true, "Title must be required !"],
             trim: true,
             minLength: [3, "title must be 3 char or more "],
-            maxLangth: [60, "title must be under 60 char"],
+            maxLangth: [200, "title must be under 200 char"],
         },
         message: {
             type: String,
             requried: [true, "Title must be required"],
-            maxLength: [1000, "title must be under 500 char"],
+            minLength: [10, "title must be 10 char or more"],
+            trim: true,
+            maxLength: [100000, "title must be under 100000 char"],
         },
         date: {
             type: Date,

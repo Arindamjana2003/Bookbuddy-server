@@ -9,7 +9,7 @@ class NoteServices {
             title: body.title,
             message: body.message,
             date: body.date,
-            tags: body.tag,
+            tags: body.tags,
             mood: body.mood,
         });
         return data;
@@ -30,7 +30,7 @@ class NoteServices {
         return note;
     }
 
-    async delete(params) {
+    async deleteNote(params) {
         const { noteId } = params;
         const note = await Notes.findById(noteId);
         if (!note) {
