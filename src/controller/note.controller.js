@@ -6,7 +6,7 @@ import notesService from "../services/note.service.js";
 class NoteController {
     async createNote(req, res) {
         try {
-            const note = await notesService.createNotes(req.body);
+            const note = await notesService.createNotes(req.body, req.user);
             console.info("note created");
             return sendResponse(res, {
                 status: HTTP_STATUS.CREATED,
@@ -15,6 +15,8 @@ class NoteController {
                 data: note,
             });
         } catch (error) {
+            console.log(error);
+
             return sendResponse(res, {
                 status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
                 success: false,
@@ -66,10 +68,10 @@ class NoteController {
 
     async fetchNote(req, res) {
         try {
-            const note = await notesService.fetch(req.params);
+            const note = await notesService.fetch(req.user);
             console.info("note fetched");
             return sendResponse(res, {
-                status: HTTP_STATUS.FETCHED,
+                status: HTTP_STATUS.OK,
                 message: RESPONSE_MESSAGES.NOTE_FETCHED,
                 success: true,
                 data: note,

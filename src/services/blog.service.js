@@ -3,7 +3,9 @@ import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
 
 class BlogServices {
     async create(body, user) {
-        const { id } = user;
+        const { _id } = user;
+        console.log(body);
+
         let imageData = {};
         if (body.image) {
             imageData = await fileUploader(body?.image);
@@ -16,7 +18,7 @@ class BlogServices {
         const data = await Blogs.create({
             title: body.title,
             description: body.description,
-            user: id,
+            user: _id,
             image: {
                 url: url || null,
                 public_id: public_id || null,

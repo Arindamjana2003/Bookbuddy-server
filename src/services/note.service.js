@@ -2,9 +2,10 @@ import { Notes } from "../model/note.model.js";
 
 class NoteServices {
     async createNotes(body, user) {
-        const { id } = user;
+        const { _id } = user;
+
         const data = await Notes.create({
-            user: id,
+            user: _id,
             title: body.title,
             message: body.message,
             date: body.date,
@@ -35,16 +36,16 @@ class NoteServices {
         if (!note) {
             throw new Error("That is not a valid category");
         }
-
         await Notes.findByIdAndDelete(noteId);
         return note;
     }
 
-    async fetch() {
-        const data = await Notes.find();
-        if (!data.length) {
-            throw new Error("Notes is Empty");
-        }
+    async fetch(user) {
+        const { _id } = user;
+        console.log(_id);
+
+        const data = await Notes.find({ user: _id });
+
         return data;
     }
 
