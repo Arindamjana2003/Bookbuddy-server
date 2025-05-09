@@ -1,29 +1,47 @@
+import { cloudinaryFileUploader } from "../config/cloudinary.config.js";
 import { Blogs } from "../model/blogs.model.js";
-import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
+// import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
 
 class BlogServices {
-    async create(body, user) {
-        const { _id } = user;
-        console.log(body);
+    async create(req) {
+        const { _id } = req.user;
+        let imageData = {
+            url: null,
+            public_id: null,
+            error: null,
+        };
 
-        let imageData = {};
-        if (body.image) {
-            imageData = await fileUploader(body?.image);
+        if (req.file) {
+            const { buffer, mimetype } = req.file;
+
+            const result = await cloudinaryFileUploader(
+                buffer,
+                mimetype,
+                "bookBuddy/blogs"
+            );
+            console.log("🚀 ~ Uploaded to Cloudinary ~", result);
+
+            if (result?.error) {
+                console.error(result.error);
+                throw new Error("File not uploaded, Cloudinary error");
+            }
+
+            imageData = {
+                url: result.url,
+                public_id: result.public_id,
+            };
         }
-        const { url, error, public_id } = imageData;
-        if (error) {
-            console.error(error);
-            throw new Error("File not uploaded , cloudinary error");
-        }
+
         const data = await Blogs.create({
-            title: body.title,
-            description: body.description,
+            title: req.body.title,
+            description: req.body.description,
             user: _id,
             image: {
-                url: url || null,
-                public_id: public_id || null,
+                url: imageData.url,
+                public_id: imageData.public_id,
             },
         });
+
         return data;
     }
 
