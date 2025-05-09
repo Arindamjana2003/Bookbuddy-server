@@ -7,9 +7,9 @@ import { sendResponse } from "../utils/response.handler.js";
 class BlogController {
     async create(req, res) {
         try {
-            console.log(req.user);
+            // console.log(req.user);
 
-            const data = await blogService.create(req.body, req.user);
+            const data = await blogService.create(req);
             console.info("categories created");
             return sendResponse(res, {
                 status: HTTP_STATUS.CREATED,
