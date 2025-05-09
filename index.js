@@ -1,3 +1,4 @@
+
 import express from "express"
 import bodyParser from "body-parser"
 import { dbConnection } from "./src/config/database.config.js"
@@ -12,10 +13,10 @@ import 'dotenv/config'
 import { bookRouter } from "./src/routes/book.routes.js"
 
 const PORT = process.env.PORT || 5000
+
 console.log(PORT);
 
-dbConnection()
-
+dbConnection();
 
 const server = express()
 cloudinaryConfig() 
@@ -42,7 +43,4 @@ server.listen(PORT  , ()=>{
 
 
 export default server 
-
-
-
 
