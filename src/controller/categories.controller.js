@@ -19,16 +19,10 @@ class CategoriesController {
 
     async updateCategories(req,res){
         try{
-            const categoriesEsxit = await categoriesService.updateCategories(req.params.categoriesId);
-            if(!categoriesEsxit){
-            return sendResponse(res,{status:HTTP_STATUS.BAD_REQUEST,message:RESPONSE_MESSAGES.CETAGORIES_NOT_EXIST,success:false,})
-            }
             const categories = await categoriesService.updateCategories(req.body, req.params.categoriesId);
 
             return sendResponse(res, {status: HTTP_STATUS.OK,message: RESPONSE_MESSAGES.CATEGORIES_UPDATED,success: true, data: categories ,
             });
-
-
 
         }catch(error){
             return sendResponse(res, {status: HTTP_STATUS.INTERNAL_SERVER_ERROR,message: RESPONSE_MESSAGES.INTERNAL_ERROR,  success: false,error: error
