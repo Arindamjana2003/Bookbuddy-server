@@ -1,4 +1,4 @@
-import { Schema } from "mongoose";
+import { model, Schema } from "mongoose";
 
 
 const ratting = new Schema({
@@ -8,9 +8,8 @@ const ratting = new Schema({
         required: true
     },
     rating: {
-        type: Number,
-        min: [1, 'Rating must be 1 or more'],
-        max: [5, 'Rating must be 5 or less'],
+        type: Number ,
+        required : true,
         default: 0
     }
 }, { timestamps: true })
@@ -33,22 +32,16 @@ const bookSchema = new Schema({
         trim: true,
         maxLength: [500, "title must be under 500 char"]
     },
-    autherName: {
+    author: {
         type: String,
         required: [true, 'Auther Name must be required !'],
         maxLength: [100, "Auther Name must be under 100 char"],
         trim: true,
     },
-    publiceDate: {
+    publishedDate: {
         type: Date,
         // required: [true, 'Publice Date must be required !'],
         default: null
-    },
-    rating: {
-        type: Number,
-        min: [1, 'Rating must be 1 or more'],
-        max: [5, 'Rating must be 5 or less'],
-        default: 0
     },
     likes: [
         {
@@ -56,9 +49,29 @@ const bookSchema = new Schema({
             ref: 'user'
         }
     ],
+    averageRating: {
+        type: Number,
+        required : false,
+        default: 0
+    },
     ratings: [
-        ratting
-    ]
+        {  type: ratting , required : false }
+    ],
+    totalRatings: {
+        type: Number,
+        required: false,
+        default: 0
+    },
+    pdf: {
+        url: {
+            type: String,
+            required: false
+        },
+        public_id: {    
+            type: String,
+            required: false
+        }
+    }
 
 
 

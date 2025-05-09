@@ -9,6 +9,7 @@ import { cloudinaryConfig } from "./src/config/cloudinary.config.js"
 import { blogRouter } from "./src/routes/blogs.routes.js"
 
 import 'dotenv/config'
+import { bookRouter } from "./src/routes/book.routes.js"
 
 const PORT = process.env.PORT || 5000
 console.log(PORT);
@@ -29,6 +30,7 @@ server.use('/api/v1/todo' , todoRouter)
 server.use('/api/v1/categories' , categoriRouter)
 server.use("/api/v1/user" , userRouter)
 server.use("/api/v1/blog" , blogRouter )
+server.use("/api/v1/book" , bookRouter)
 
 server.get("/" , (req , res)=>{
      console.log("application running");

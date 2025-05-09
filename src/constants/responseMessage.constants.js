@@ -14,6 +14,13 @@ export const RESPONSE_MESSAGES = {
     TITLE_REQUIRED: "Title is required",
     FETCH_ALL_CATEGORIES: "Fetch all Categories list",
     NO_CATEGORIES: "No Categories are available!",
+
+    BOOK_CREATE_SUCCESS: "Book created successfully",
+    BOOK_UPDATE_SUCCESS: "Book update success",
+    BOOK_DELETE_SUCCESS: "Book delete success",
+    BOOK_RATTING_SUCCESS: "Book ratting success",
+    BOOK_LIKE_SUCCESS: "Book like success", 
+
     INTERNAL_ERROR: "Internal Error",
     
 
