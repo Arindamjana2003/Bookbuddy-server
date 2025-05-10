@@ -34,7 +34,7 @@ class CategoriesServices {
     async deleteCategories(params) {
         const { CategoriesId } = params;
         const data = await Categories.findByIdAndDelete(CategoriesId);
-        if(!data){
+        if (!data) {
             throw new Error("Category not found");
         }
         return data;
@@ -43,9 +43,9 @@ class CategoriesServices {
     //  Fetch all categories
     async fetchAllCategories() {
         const data = await Categories.find();
-        if (!data.length) {
-            throw new Error("Categories not found");
-        }
+        // if (!data.length) {
+        //     throw new Error("Categories not found");
+        // }
         return data;
     }
 
