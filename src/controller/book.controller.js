@@ -103,10 +103,33 @@ class BookController {
         try {
             const { categoryId } = req.params;
             const data = await bookService.fetch(categoryId);
-            console.info("Books fetched");
+            console.info("Category fetched");
             return sendResponse(res, {
                 status: HTTP_STATUS.OK,
                 message: RESPONSE_MESSAGES.BOOK_FETCH_SUCCESS,
+                success: true,
+                data: data,
+            });
+        } catch (error) {
+            return sendResponse(res, {
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                success: false,
+                message: RESPONSE_MESSAGES.INTERNAL_ERROR,
+                error: error,
+            });
+        }
+    }
+
+    async fetchById(req, res) {
+        try {
+            const { bookId } = req.params;
+
+            const data = await bookService.fetchById(bookId);
+
+            console.info("Books fetched");
+            return sendResponse(res, {
+                status: HTTP_STATUS.OK,
+                message: RESPONSE_MESSAGES.BOOK_FETCH_SUCCESS || "Book fetched",
                 success: true,
                 data: data,
             });

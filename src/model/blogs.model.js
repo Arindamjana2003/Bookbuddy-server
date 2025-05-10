@@ -17,7 +17,7 @@ const blogSchema = new Schema(
         description: {
             type: String,
             trim: true,
-            maxLength: [500, "Description must be under 500 characters"],
+            maxLength: [50000, "Description must be under 500 characters"],
         },
         image: {
             url: {
