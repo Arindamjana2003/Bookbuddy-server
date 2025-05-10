@@ -4,7 +4,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import { dbConnection } from "./src/config/database.config.js";
 import corsConfig from "./src/config/cors.config.js";
-import { todoRouter } from "./src/routes/todo.routes.js";
+import { notesRouter } from "./src/routes/note.routes.js";
 import { categoriRouter } from "./src/routes/categories.routes.js";
 import { userRouter } from "./src/routes/user.routes.js";
 import { cloudinaryConfig } from "./src/config/cloudinary.config.js";
@@ -27,7 +27,7 @@ server.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
 // all routes
 
-server.use("/api/v1/todo", todoRouter);
+server.use("/api/v1/note", notesRouter);
 server.use("/api/v1/categories", categoriRouter);
 server.use("/api/v1/user", userRouter);
 server.use("/api/v1/blog", blogRouter);
