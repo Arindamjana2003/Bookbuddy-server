@@ -1,24 +1,39 @@
 import { cloudinaryFileUploader } from "../config/cloudinary.config.js";
 import { Books } from "../model/book.model.js";
-import { Users } from "../model/user.model.js";
 import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
 import { v2 as cloudinary } from "cloudinary";
 
 class BookService {
     async create(req) {
-        const { body, user } = req;
-        const { buffer, mimetype } = req.file;
+        const { body, user, files } = req;
         const { _id } = user;
 
-        const result = await cloudinaryFileUploader(
-            buffer,
-            mimetype,
+        if (!files?.pdfFile?.[0] || !files?.coverImage?.[0]) {
+            throw new Error("Both PDF and cover image files are required.");
+        }
+
+        // Upload PDF
+        const pdfUpload = await cloudinaryFileUploader(
+            files.pdfFile[0].buffer,
+            files.pdfFile[0].mimetype,
             "bookBuddy/books"
         );
 
-        if (result?.error) {
-            console.error(result.error);
-            throw new Error("File not uploaded, Cloudinary error");
+        if (pdfUpload?.error) {
+            console.error(pdfUpload.error);
+            throw new Error("PDF upload failed");
+        }
+
+        // Upload Cover Image
+        const imageUpload = await cloudinaryFileUploader(
+            files.coverImage[0].buffer,
+            files.coverImage[0].mimetype,
+            "bookBuddy/covers"
+        );
+
+        if (imageUpload?.error) {
+            console.error(imageUpload.error);
+            throw new Error("Cover image upload failed");
         }
 
         const data = await Books.create({
@@ -31,8 +46,12 @@ class BookService {
             category: body.category,
             user: _id,
             pdf: {
-                url: result?.url || null,
-                public_id: result?.public_id || null,
+                url: pdfUpload.url,
+                public_id: pdfUpload.public_id,
+            },
+            coverImage: {
+                url: imageUpload.url,
+                public_id: imageUpload.public_id,
             },
         });
 

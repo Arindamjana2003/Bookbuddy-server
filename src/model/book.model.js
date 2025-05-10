@@ -72,6 +72,10 @@ const bookSchema = new Schema(
                 required: false,
             },
         },
+        coverImage: {
+            url: { type: String, required: true },
+            public_id: { type: String, required: true },
+        },
         category: {
             type: Schema.Types.ObjectId,
             ref: "category",

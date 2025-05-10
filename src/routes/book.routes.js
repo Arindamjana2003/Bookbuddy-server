@@ -11,7 +11,10 @@ const router = express.Router();
 router
     .post(
         "/",
-        upload.single("file"),
+        upload.fields([
+            { name: "pdfFile", maxCount: 1 },
+            { name: "coverImage", maxCount: 1 },
+        ]),
         isAuthenticate,
         // validate(booksValidation.create),
         bookController.create
