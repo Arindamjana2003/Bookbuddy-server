@@ -21,6 +21,7 @@ router
     )
     .get("/", isAuthenticate, bookController.fetch)
     .get("/:categoryId", isAuthenticate, bookController.fetchByCategory)
+    .get("/details/:bookId", isAuthenticate, bookController.fetchById)
     .patch(
         "/:bookId",
         upload.single("book"),
