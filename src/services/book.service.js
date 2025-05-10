@@ -124,7 +124,7 @@ class BookService {
     }
 
     async fetchById(bookId) {
-        const data = await Books.findById(bookId);
+        const data = await Books.findById(bookId).populate("user category");
         if (!data) {
             throw new Error("That is not a valid Book");
         }
