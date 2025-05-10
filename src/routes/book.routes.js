@@ -11,11 +11,13 @@ const router = express.Router();
 router
     .post(
         "/",
-        upload.single("pdf"),
-        validate(booksValidation.create),
+        upload.single("file"),
+        isAuthenticate,
+        // validate(booksValidation.create),
         bookController.create
     )
     .get("/", isAuthenticate, bookController.fetch)
+    .get("/:categoryId", isAuthenticate, bookController.fetchByCategory)
     .patch(
         "/:bookId",
         upload.single("book"),
