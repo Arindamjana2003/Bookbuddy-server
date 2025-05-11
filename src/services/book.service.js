@@ -177,13 +177,70 @@ class BookService {
 
     async like(params, user) {
         const { bookId } = params;
-        const { id } = user;
-        const like = await Books.findByIdAndUpdate(bookId, {
-            $push: {
-                likes: id,
-            },
-        });
-        return like;
+        const { _id } = user;
+
+        const book = await Books.findById(bookId);
+        if (!book) throw new Error("Book not found");
+
+        const hasLiked = book.likes.includes(_id);
+        const updateOperation = hasLiked
+            ? { $pull: { likes: _id } }
+            : { $addToSet: { likes: _id } };
+
+        const updatedBook = await Books.findByIdAndUpdate(
+            bookId,
+            updateOperation,
+            { new: true }
+        );
+
+        return updatedBook;
+    }
+
+    async searchBooks({ query, page = 1, limit = 10, category }) {
+        try {
+            // Build search query
+            const searchQuery = {};
+
+            // Partial text search (case-insensitive)
+            if (query) {
+                const regex = new RegExp(query, "i");
+                searchQuery.$or = [
+                    { name: regex },
+                    { author: regex },
+                    { description: regex },
+                ];
+            }
+
+            // Category filter
+            if (category) {
+                searchQuery.category = category;
+            }
+
+            // Calculate skip for pagination
+            const skip = (page - 1) * limit;
+
+            // Execute query
+            const [books, total] = await Promise.all([
+                Books.find(searchQuery)
+                    .skip(skip)
+                    .limit(limit)
+                    .populate("user category"),
+                Books.countDocuments(searchQuery),
+            ]);
+
+            return {
+                books,
+                pagination: {
+                    total,
+                    page,
+                    limit,
+                    totalPages: Math.ceil(total / limit),
+                },
+            };
+        } catch (error) {
+            console.error("Search error:", error);
+            throw new Error("Failed to search books");
+        }
     }
 }
 

@@ -33,10 +33,9 @@ class NoteServices {
     async deleteNote(params) {
         const { noteId } = params;
         const note = await Notes.findById(noteId);
-        if (!note) {
-            throw new Error("That is not a valid category");
+        if (note) {
+            await Notes.findByIdAndDelete(noteId);
         }
-        await Notes.findByIdAndDelete(noteId);
         return note;
     }
 
@@ -52,9 +51,7 @@ class NoteServices {
     async fetchById(params) {
         const { noteId } = params;
         const data = await Notes.findById(noteId);
-        if (!data) {
-            throw new Error("That is not a valid note");
-        }
+
         return data;
     }
 }

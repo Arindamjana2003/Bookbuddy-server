@@ -19,7 +19,8 @@ export const RESPONSE_MESSAGES = {
     BOOK_UPDATE_SUCCESS: "Book update success",
     BOOK_DELETE_SUCCESS: "Book delete success",
     BOOK_RATTING_SUCCESS: "Book ratting success",
-    BOOK_LIKE_SUCCESS: "Book like success", 
+    BOOK_LIKE_SUCCESS: "Book like success",
+    SEARCH_SUCCESS: "Search completed successfully",
 
     INTERNAL_ERROR: "Internal Error",
 };

@@ -30,6 +30,13 @@ class NoteController {
         try {
             const note = await notesService.deleteNote(req.params);
             console.info("note deleted");
+            if (!note) {
+                return sendResponse(res, {
+                    status: HTTP_STATUS.NOT_FOUND,
+                    message: RESPONSE_MESSAGES.NOTE_NOT_FOUND,
+                    success: false,
+                });
+            }
             return sendResponse(res, {
                 status: HTTP_STATUS.DELETED,
                 message: RESPONSE_MESSAGES.NOTE_DELETED,
@@ -90,6 +97,13 @@ class NoteController {
         try {
             const note = await notesService.fetchById(req.params);
             console.info("note fetched by id");
+            if (!note) {
+                return sendResponse(res, {
+                    status: HTTP_STATUS.NOT_FOUND,
+                    message: RESPONSE_MESSAGES.NOTE_NOT_FOUND,
+                    success: false,
+                });
+            }
             return sendResponse(res, {
                 status: HTTP_STATUS.OK,
                 message: "Note fetched",

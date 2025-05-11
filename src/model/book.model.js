@@ -49,6 +49,7 @@ const bookSchema = new Schema(
             {
                 type: Schema.Types.ObjectId,
                 ref: "user",
+                index: true,
             },
         ],
         averageRating: {
