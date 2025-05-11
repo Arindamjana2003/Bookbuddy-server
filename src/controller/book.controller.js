@@ -5,14 +5,6 @@ import { sendResponse } from "../utils/response.handler.js";
 
 class BookController {
     async create(req, res) {
-        //  req.user = {
-        //   id: "680b27dd1a1d35fd02b279aa",
-        //   email: "test@test.com",
-        //   role: "user",
-        //  }
-        console.log(req.user, "user");
-        console.log(req.file, "file");
-
         try {
             const data = await bookService.create(req);
             console.info("Book created");
@@ -183,6 +175,52 @@ class BookController {
                 success: false,
                 message: RESPONSE_MESSAGES.INTERNAL_ERROR,
                 error: error,
+            });
+        }
+    }
+
+    async search(req, res) {
+        try {
+            const { q: query, category, page = 1, limit = 10 } = req.query;
+
+            // Validate inputs
+            if (isNaN(page) || page < 1) {
+                return sendResponse(res, {
+                    status: HTTP_STATUS.BAD_REQUEST,
+                    message: "Page must be a positive number",
+                    success: false,
+                });
+            }
+
+            if (isNaN(limit) || limit < 1 || limit > 100) {
+                return sendResponse(res, {
+                    status: HTTP_STATUS.BAD_REQUEST,
+                    message: "Limit must be between 1 and 100",
+                    success: false,
+                });
+            }
+
+            // Perform search
+            const { books, pagination } = await bookService.searchBooks({
+                query,
+                category,
+                page: parseInt(page),
+                limit: parseInt(limit),
+            });
+
+            return sendResponse(res, {
+                status: HTTP_STATUS.OK,
+                message: "Books retrieved successfully",
+                success: true,
+                data: books,
+                pagination,
+            });
+        } catch (error) {
+            return sendResponse(res, {
+                status: HTTP_STATUS.INTERNAL_SERVER_ERROR,
+                message: "Search failed",
+                success: false,
+                error: error.message,
             });
         }
     }

@@ -1,6 +1,6 @@
 import { cloudinaryFileUploader } from "../config/cloudinary.config.js";
 import { Blogs } from "../model/blogs.model.js";
-// import { fileDestroy, fileUploader } from "../utils/fileUpload.js";
+import { fileDestroy } from "../utils/fileUpload.js";
 
 class BlogServices {
     async create(req) {

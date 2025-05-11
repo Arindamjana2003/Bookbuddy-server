@@ -20,7 +20,11 @@ router
         bookController.create
     )
     .get("/", isAuthenticate, bookController.fetch)
-    .get("/:categoryId", isAuthenticate, bookController.fetchByCategory)
+    .get(
+        "/category/:categoryId",
+        isAuthenticate,
+        bookController.fetchByCategory
+    )
     .get("/details/:bookId", isAuthenticate, bookController.fetchById)
     .patch(
         "/:bookId",
@@ -36,12 +40,12 @@ router
         bookController.delete
     )
     .patch(
-        "ratting/:bookId",
+        "/ratting/:bookId",
         validate(booksValidation.ratting),
         isAuthenticate,
         bookController.ratting
     )
-    .patch("/like/:bookId", isAuthenticate, bookController.like);
-// .get("/search/:name", isAuthenticate, bookController.search)
+    .patch("/like/:bookId", isAuthenticate, bookController.like)
+    .get("/search", isAuthenticate, bookController.search);
 
 export const bookRouter = router;
