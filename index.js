@@ -21,10 +21,10 @@ dbConnection();
 const server = express();
 cloudinaryConfig();
 server.use(corsConfig);
-server.use(bodyParser.json({ limit: "50mb" }));
-server.use(express.json({ limit: "50mb" }));
-server.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
-
+server.use(bodyParser.json({ limit: "150mb" }));
+server.use(express.json({ limit: "150mb" }));
+server.use(bodyParser.urlencoded({ limit: "150mb", extended: true }));
+server.use(express.urlencoded({ limit:"150mb", extended:true})); 
 // all routes
 
 server.use("/api/v1/note", notesRouter);
